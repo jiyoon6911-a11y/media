@@ -1,0 +1,6 @@
+{
+  "name": "한림대학교 미디어스쿨 장비지원실",
+  "description": "한림대학교 미디어스쿨 장비지원실의 실시간 장비 대여 고지 및 자원 대여 관리 웹 인터페이스",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
