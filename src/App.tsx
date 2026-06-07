@@ -29,10 +29,10 @@ export default function App() {
     phone: string;
     department: string;
   } | null>({
-    name: '변석영',
+    name: '김민우',
     studentId: '202415082',
     phone: '010-5231-6911',
-    department: '소프트웨어학부 2학년 (콘텐츠IT전공)'
+    department: '미디어스쿨 2학년 (콘텐츠IT전공)'
   });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [targetTabAfterLogin, setTargetTabAfterLogin] = useState<string | null>(null);
@@ -304,6 +304,7 @@ export default function App() {
                 onShowToast={showToast} 
                 loggedInUser={loggedInUser}
                 isLoggedIn={isLoggedIn}
+                onLoginTrigger={handleLoginTrigger}
               />
             </div>
           ) : (

@@ -198,11 +198,11 @@ export default function AiRoadmapSection({
         </div>
       </div>
 
-      {/* 3.3 로드맵 학기별 타임라인 플로우 & 로컬 챗봇 바디구조 */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      {/* 3.3 로드맵 학기별 타임라인 플로우 */}
+      <div className="space-y-6">
         
-        {/* 좌측 콘텐츠 (2/3 영역) - 학기별 가이드 */}
-        <div className="lg:col-span-2 space-y-6">
+        {/* 학기별 가이드 */}
+        <div className="space-y-6">
           <div className="space-y-4">
             <div className="flex justify-between items-center select-none">
               <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest">{activeUser.typeLabel} 추천 커리큘럼 로드맵</h4>
@@ -278,134 +278,28 @@ export default function AiRoadmapSection({
               <div className="bg-white border border-gray-100 hover:border-[#006bd1]/20 rounded-2xl p-4 space-y-2 text-center transition hover:shadow-2xs">
                 <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mx-auto text-blue-600 font-bold">크</div>
                 <h5 className="text-xs font-black text-slate-800">콘텐츠 크리에이터</h5>
-                <p className="text-[10px] text-gray-400 font-semibold">영상, 숏폼, 브랜딩 콘텐츠 제작 기획</p>
+                <p className="text-[10px] text-gray-400 font-semibold font-sans">영상, 숏폼, 브랜딩 콘텐츠 제작 기획</p>
               </div>
 
               <div className="bg-white border border-gray-100 hover:border-[#006bd1]/20 rounded-2xl p-4 space-y-2 text-center transition hover:shadow-2xs">
                 <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center mx-auto text-indigo-600 font-bold">P</div>
                 <h5 className="text-xs font-black text-slate-800">PD / 연출가</h5>
-                <p className="text-[10px] text-gray-400 font-semibold">방송 기획, 연출, 전송 제작 총괄</p>
+                <p className="text-[10px] text-gray-400 font-semibold font-sans">방송 기획, 연출, 전송 제작 총괄</p>
               </div>
 
               <div className="bg-white border border-gray-100 hover:border-[#006bd1]/20 rounded-2xl p-4 space-y-2 text-center transition hover:shadow-2xs">
                 <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center mx-auto text-purple-600 font-bold font-mono">M</div>
                 <h5 className="text-xs font-black text-slate-800">미디어 마케터</h5>
-                <p className="text-[10px] text-gray-400 font-semibold">기업 브랜드, SNS, 바이럴 홍보 전략</p>
+                <p className="text-[10px] text-gray-400 font-semibold font-sans">기업 브랜드, SNS, 바이럴 홍보 전략</p>
               </div>
 
               <div className="bg-white border border-gray-100 hover:border-[#006bd1]/20 rounded-2xl p-4 space-y-2 text-center transition hover:shadow-2xs">
                 <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center mx-auto text-pink-600 font-bold">스</div>
                 <h5 className="text-xs font-black text-slate-800">미디어 스타트업</h5>
-                <p className="text-[10px] text-gray-400 font-semibold">플랫폼 창업, 창작 서비스 사업기획</p>
+                <p className="text-[10px] text-gray-400 font-semibold font-sans">플랫폼 창업, 창작 서비스 사업기획</p>
               </div>
 
             </div>
-          </div>
-        </div>
-
-        {/* 우측 챗봇 상담 패널 (1/3 영역) */}
-        <div className="lg:col-span-1">
-          <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-xs flex flex-col h-[520px] lg:sticky lg:top-24">
-            
-            {/* 챗봇 헤더 */}
-            <div className="bg-[#1b3b6f] text-white px-5 py-4 flex items-center justify-between border-b border-slate-700 select-none">
-              <div className="flex items-center gap-2">
-                <div className="w-2 rounded-full h-5 bg-emerald-400 animate-pulse shrink-0" />
-                <span className="text-xs font-extrabold tracking-tight">AI 커리큘럼 상담봇</span>
-              </div>
-              <span className="text-[9.5px] font-black bg-white/10 text-emerald-300 px-2 py-0.5 rounded-full">
-                ONLINE
-              </span>
-            </div>
-
-            {/* 채팅 영역 */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-50/50">
-              {chatMessages.map((msg, idx) => {
-                const isBot = msg.sender === 'bot';
-                return (
-                  <div key={idx} className={`flex gap-2.5 ${isBot ? 'justify-start' : 'justify-end'}`}>
-                    {isBot && (
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#006bd1] to-indigo-600 flex items-center justify-center text-white shrink-0 mt-0.5 shadow-2xs select-none">
-                        <Brain className="w-3.5 h-3.5" />
-                      </div>
-                    )}
-                    <div className={`max-w-[85%] rounded-2xl p-3 text-xs font-semibold leading-relaxed shadow-3xs select-text ${
-                      isBot 
-                        ? 'bg-white text-slate-700 border border-slate-100' 
-                        : 'bg-[#006bd1] text-white shadow-2xs'
-                    }`}>
-                      {msg.text}
-                    </div>
-                  </div>
-                );
-              })}
-              
-              {isTyping && (
-                <div className="flex gap-2.5 justify-start">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#006bd1] to-indigo-600 flex items-center justify-center text-white shrink-0 mt-0.5 shadow-2xs select-none">
-                    <Brain className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="bg-white text-gray-400 border border-slate-100 rounded-2xl px-4 py-3 text-xs flex items-center gap-1 shadow-3xs select-none">
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" />
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]" />
-                  </div>
-                </div>
-              )}
-              
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* 추천 질문 칩 */}
-            <div className="px-3 py-2 bg-slate-50 border-t border-gray-100 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none py-2 shrink-0 select-none">
-              {[
-                { text: `소프트웨어학부에 어울리는 미디어 과목 추천해줘`, label: '💻 소프트웨어 융합 추천' },
-                { text: `내 희망 직무 [${selectedJob}] 양성 가이드는?`, label: '🎯 희망직무 권장코스' },
-                { text: `대여장비 FX9 카메라 활용 실습과목 추천해줘`, label: '🎥 촬영장비 특화과목' },
-                { text: '포트폴리오에 도움이 되는 과목은?', label: '🖼️ 포트폴리오 완성 전공' },
-                { text: '졸업 후 진로 추천이 궁금해요!', label: '🎓 졸업 후 진로 커리어' }
-              ].map((chip, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    handleSendChatMessage(chip.text);
-                    onShowToast(`"${chip.text}" 간편 질문을 접수했습니다.`);
-                  }}
-                  className="text-[10px] font-black text-[#006bd1] bg-sky-50 hover:bg-[#006bd1] hover:text-white border border-sky-100 hover:border-[#006bd1] px-2.5 py-1.5 rounded-full transition cursor-pointer shrink-0"
-                >
-                  {chip.label}
-                </button>
-              ))}
-            </div>
-
-            {/* 입력기 구조 */}
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (chatInput.trim()) {
-                  handleSendChatMessage(chatInput);
-                  onShowToast('질문에 대한 답변을 분석 중입니다.');
-                }
-              }}
-              className="bg-white border-t border-gray-100 p-2.5 flex gap-2 shrink-0 select-none"
-            >
-              <input
-                type="text"
-                placeholder="궁금한 실무과정이나 취업진로 질문 적기..."
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                disabled={isTyping}
-                className="flex-1 text-xs font-bold px-3 py-2.5 bg-slate-50 hover:bg-slate-100/50 focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#006bd1] transition disabled:opacity-50"
-              />
-              <button
-                type="submit"
-                disabled={!chatInput.trim() || isTyping}
-                className="bg-[#006bd1] hover:bg-blue-700 text-white p-2.5 rounded-xl transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center shrink-0 active:scale-95 shadow-2xs"
-              >
-                <Send className="w-3.5 h-3.5" />
-              </button>
-            </form>
-
           </div>
         </div>
 
