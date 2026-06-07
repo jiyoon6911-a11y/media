@@ -1171,39 +1171,27 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
                 <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-widest flex items-center justify-between">
                   <span>이번학기 추천 과목 리스트</span>
                   <span className="text-[9.5px] font-bold text-slate-400 lowercase italic">
-                    (체크박스를 토글하여 임의 조정할 수 있습니다)
+                    (미디어스쿨 2학년 맞춤형 추천 교과목입니다)
                   </span>
                 </h4>
                 <div className="grid grid-cols-1 gap-2 max-h-[195px] overflow-y-auto pr-1">
-                  {courseDatabase.slice(0, 10).map((course) => {
-                    const isCompleted = completedCourseCodes.includes(course.code);
+                  {courseDatabase.slice(0, 8).map((course) => {
                     return (
-                      <button
+                      <div
                         key={course.code}
-                        onClick={() => toggleCourseCompleted(course.code)}
-                        className={`flex items-center justify-between p-2.5 rounded-xl border text-left transition cursor-pointer text-xs font-semibold ${
-                          isCompleted 
-                            ? 'bg-emerald-50/60 border-emerald-200 text-emerald-950 hover:bg-emerald-50' 
-                            : 'bg-slate-50/40 border-slate-100 text-slate-600 hover:bg-slate-50 hover:border-slate-300'
-                        }`}
+                        className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 bg-slate-50/40 text-xs font-semibold text-slate-700"
                       >
                         <div className="flex items-center gap-2">
-                          <div className={`w-4 h-4 rounded flex items-center justify-center transition ${
-                            isCompleted ? 'bg-emerald-500 text-white' : 'border border-gray-300'
-                          }`}>
-                            {isCompleted && <span className="text-[10px] font-black">✓</span>}
-                          </div>
-                          <span className="font-extrabold max-w-[140px] truncate">{course.name}</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#006bd1]" />
+                          <span className="font-extrabold max-w-[160px] truncate">{course.name}</span>
                         </div>
                         <div className="flex items-center gap-1.5 font-mono text-[10px]">
                           <span className="text-gray-400">({course.code})</span>
-                          <span className={`px-1.5 py-0.2 rounded font-black ${
-                            isCompleted ? 'bg-emerald-200 text-emerald-800' : 'bg-gray-200 text-gray-500'
-                          }`}>
-                            {isCompleted ? 'A+' : '미수강'}
+                          <span className="px-1.5 py-0.5 rounded font-black bg-blue-50 text-blue-600">
+                            추천
                           </span>
                         </div>
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
