@@ -1425,15 +1425,17 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
       </div>
 
 
-      {/* 4. [인터랙티브 개선점] 5대 전공 커리어 코스 로드맵 */}
-      <div className="space-y-6" id="career-tracks-roadmap">
+      {/* 4. 전공 교육 개념도 시각화 */}
+      <div className="space-y-8" id="career-tracks-roadmap">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-3 select-none">
           <div className="space-y-1">
             <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-500 animate-pulse" />
-              미디어스쿨 5대 특성화 Career 코스맵
+              <span className="w-2.5 h-2.5 rounded-full bg-[#006bd1]" />
+              🎓 전공 교육 개념도
             </h3>
-            <p className="text-xs text-gray-500 font-bold">원하는 트랙 카드를 터치/클릭하시면 해해당 트랙 맞춤 교과목들이 하단 개설표에서 반짝여 비추어집니다.</p>
+            <p className="text-xs text-gray-500 font-semibold">
+              언론 / 방송인에 필요한 글쓰기, 말하기, 영상으로 이야기 하는 능력을 기름으로써 매체 종사자는 물론 다양한 직종에도 적응할 수 있는 기능을 익힐 수 있습니다.
+            </p>
           </div>
           {activeTrack && (
             <button
@@ -1449,43 +1451,288 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
           )}
         </div>
 
-        {/* 5대 트랙 카드 그리드 구도 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 select-none">
-          {careerTracks.map((track) => {
-            const isSelected = activeTrack === track.id;
-            const IconComponent = track.icon;
-            
-            return (
-              <button
-                key={track.id}
-                onClick={() => handleTrackSelect(track.id)}
-                className={`text-left p-5 border rounded-2xl flex flex-col justify-between gap-4 transition duration-300 relative group cursor-pointer ${
-                  isSelected 
-                    ? `border-blue-600 shadow-lg ring-2 ring-blue-500/20 bg-blue-50/50` 
-                    : `border-gray-200 bg-white hover:border-slate-400 hover:shadow-md`
-                }`}
-              >
-                {/* 상단 부분 */}
-                <div className="space-y-3 w-full">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center border border-gray-100 ${
-                    isSelected ? 'bg-[#006bd1] text-white' : 'bg-slate-50 text-slate-700 group-hover:bg-slate-100'
-                  }`}>
-                    <IconComponent className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-extrabold text-[#111926] text-sm tracking-tight">
-                    {track.title}
-                  </h4>
-                </div>
+        {/* 상단 통합 핵심 비전 보드 */}
+        <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 text-center shadow-xs space-y-2 select-text max-w-4xl mx-auto">
+          <h4 className="text-sm sm:text-base font-black text-slate-950 leading-snug tracking-tight">
+            잠재력 극대화 할 실무 능력 절대 우위의 학과 육성실무와 이론을 겸비한 교육으로
+          </h4>
+          <p className="text-xs sm:text-sm text-slate-800 font-extrabold">
+            직무 경쟁력 극대화 작업을 통한 이론 습득과정으로 재밌는 교육 과정 진행
+          </p>
+        </div>
 
-                {/* 선택된 상태 가시 시각물 */}
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-block select-all ${
-                  isSelected ? 'bg-blue-600 text-white' : 'bg-slate-100 text-gray-500'
-                }`}>
-                  {isSelected ? '선택 활성' : '트랙 매칭'}
-                </span>
-              </button>
-            );
-          })}
+        {/* 하단 5대 특성 교육 개념 카드 관계망 */}
+        <div className="space-y-8 select-none">
+          {/* Row 1: 3단 구성 (신문저널리즘, 방송저널리즘, 방송콘텐츠학) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* 1. 신문저널리즘 */}
+            <div 
+              onClick={() => {
+                handleTrackSelect('news');
+                onShowToast('[신문저널리즘] 관련 전공 과목 하이라이트 필터가 연동되었습니다.');
+              }}
+              className={`group flex flex-col items-stretch transition-all duration-300 cursor-pointer ${
+                activeTrack === 'news' ? 'scale-[1.01]' : 'hover:translate-y-[-2px]'
+              }`}
+            >
+              {/* 회색조 파란색 헤더 */}
+              <div className={`py-4.5 px-4 text-center rounded-2xl font-black text-xs text-white transition-all duration-300 ${
+                activeTrack === 'news' 
+                  ? 'bg-blue-600 shadow-md ring-2 ring-blue-500 ring-offset-2' 
+                  : 'bg-[#788fa5] group-hover:bg-[#687e94]'
+              }`}>
+                신문저널리즘
+              </div>
+              
+              {/* 연결 수직 선 */}
+              <div className="w-px h-3.5 bg-gray-300 mx-auto" />
+              
+              {/* 본문 카드 */}
+              <div className={`p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 flex-1 flex flex-col justify-between ${
+                activeTrack === 'news' 
+                  ? 'border-blue-500 shadow-sm bg-blue-50/20' 
+                  : 'border-slate-200 group-hover:border-slate-300'
+              }`}>
+                <ul className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>교내외 매체 게재를 전제로 한 실무 교육</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>현장실습 인턴의무화로 현장 감각 유지</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>글, 사진, 편집 능력 입증할 포트폴리오 축적</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[9.5px] font-black text-slate-400">학점-강의-실습 융합</span>
+                  <span className={`text-[9.5px] font-black px-2 py-0.5 rounded ${
+                    activeTrack === 'news' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeTrack === 'news' ? '선택 해제 ✕' : '과목 하이라이트 ＋'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. 방송저널리즘 */}
+            <div 
+              onClick={() => {
+                handleTrackSelect('broadcast-journalism');
+                onShowToast('[방송저널리즘] 관련 전공 과목 하이라이트 필터가 연동되었습니다.');
+              }}
+              className={`group flex flex-col items-stretch transition-all duration-300 cursor-pointer ${
+                activeTrack === 'broadcast-journalism' ? 'scale-[1.01]' : 'hover:translate-y-[-2px]'
+              }`}
+            >
+              {/* 회색조 파란색 헤더 */}
+              <div className={`py-4.5 px-4 text-center rounded-2xl font-black text-xs text-white transition-all duration-300 ${
+                activeTrack === 'broadcast-journalism' 
+                  ? 'bg-blue-600 shadow-md ring-2 ring-blue-500 ring-offset-2' 
+                  : 'bg-[#788fa5] group-hover:bg-[#687e94]'
+              }`}>
+                방송저널리즘
+              </div>
+              
+              {/* 연결 수직 선 */}
+              <div className="w-px h-3.5 bg-gray-300 mx-auto" />
+              
+              {/* 본문 카드 */}
+              <div className={`p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 flex-1 flex flex-col justify-between ${
+                activeTrack === 'broadcast-journalism' 
+                  ? 'border-blue-500 shadow-sm bg-blue-50/20' 
+                  : 'border-slate-200 group-hover:border-slate-300'
+              }`}>
+                <ul className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>교내외 매체의 방송 프로그램 납품 전제한 실무교육</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>인턴 의무화</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>보도, 촬영 편집 포트폴리오 준비</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[9.5px] font-black text-slate-400">현장 특화 프로덕션</span>
+                  <span className={`text-[9.5px] font-black px-2 py-0.5 rounded ${
+                    activeTrack === 'broadcast-journalism' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeTrack === 'broadcast-journalism' ? '선택 해제 ✕' : '과목 하이라이트 ＋'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. 방송콘텐츠 제작 */}
+            <div 
+              onClick={() => {
+                handleTrackSelect('broadcast-contents');
+                onShowToast('[방송콘텐츠 제작] 관련 전공 과목 하이라이트 필터가 연동되었습니다.');
+              }}
+              className={`group flex flex-col items-stretch transition-all duration-300 cursor-pointer ${
+                activeTrack === 'broadcast-contents' ? 'scale-[1.01]' : 'hover:translate-y-[-2px]'
+              }`}
+            >
+              {/* 회색조 파란색 헤더 */}
+              <div className={`py-4.5 px-4 text-center rounded-2xl font-black text-xs text-white transition-all duration-300 ${
+                activeTrack === 'broadcast-contents' 
+                  ? 'bg-blue-600 shadow-md ring-2 ring-blue-500 ring-offset-2' 
+                  : 'bg-[#788fa5] group-hover:bg-[#687e94]'
+              }`}>
+                방송콘텐츠 제작
+              </div>
+              
+              {/* 연결 수직 선 */}
+              <div className="w-px h-3.5 bg-gray-300 mx-auto" />
+              
+              {/* 본문 카드 */}
+              <div className={`p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 flex-1 flex flex-col justify-between ${
+                activeTrack === 'broadcast-contents' 
+                  ? 'border-blue-500 shadow-sm bg-blue-50/20' 
+                  : 'border-slate-200 group-hover:border-slate-300'
+              }`}>
+                <ul className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>영상 공모전 응모 전제한 수업과 동아리 활동 전개</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>인턴 의무화</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>영상 스토리텔링 능력 포트폴리오화</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[9.5px] font-black text-slate-400">스토리텔링 극대화</span>
+                  <span className={`text-[9.5px] font-black px-2 py-0.5 rounded ${
+                    activeTrack === 'broadcast-contents' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeTrack === 'broadcast-contents' ? '선택 해제 ✕' : '과목 하이라이트 ＋'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Row 2: 2단 구성 (복수전공 추천: 광고, 대학원 진학) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            
+            {/* 4. 복수전공 추천 : 광고 */}
+            <div 
+              onClick={() => {
+                handleTrackSelect('advertising');
+                onShowToast('[복수전공 추천 : 광고] 관련 전공 과목 하이라이트 필터가 연동되었습니다.');
+              }}
+              className={`group flex flex-col items-stretch transition-all duration-300 cursor-pointer ${
+                activeTrack === 'advertising' ? 'scale-[1.01]' : 'hover:translate-y-[-2px]'
+              }`}
+            >
+              {/* 회색조 파란색 헤더 */}
+              <div className={`py-4.5 px-4 text-center rounded-2xl font-black text-xs text-white transition-all duration-300 ${
+                activeTrack === 'advertising' 
+                  ? 'bg-blue-600 shadow-md ring-2 ring-blue-500 ring-offset-2' 
+                  : 'bg-[#788fa5] group-hover:bg-[#687e94]'
+              }`}>
+                복수전공 추천 : 광고
+              </div>
+              
+              {/* 연결 수직 선 */}
+              <div className="w-px h-3.5 bg-gray-300 mx-auto" />
+              
+              {/* 본문 카드 */}
+              <div className={`p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 flex-1 flex flex-col justify-between ${
+                activeTrack === 'advertising' 
+                  ? 'border-blue-500 shadow-sm bg-blue-50/20' 
+                  : 'border-slate-200 group-hover:border-slate-300'
+              }`}>
+                <ul className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>정부, 기업, 홍보 대행사 진출 위해 광고홍보학과 복수전공</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>인턴 의무화</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>본 전공의 기사 작성 능력 바탕에 홍보학 지식 접목</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[9.5px] font-black text-slate-400">홍보 마케터 정예 코스</span>
+                  <span className={`text-[9.5px] font-black px-2 py-0.5 rounded ${
+                    activeTrack === 'advertising' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeTrack === 'advertising' ? '선택 해제 ✕' : '과목 하이라이트 ＋'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. 대학원 진학 */}
+            <div 
+              onClick={() => {
+                handleTrackSelect('grad-school');
+                onShowToast('[대학원 진학] 관련 전공 과목 하이라이트 필터가 연동되었습니다.');
+              }}
+              className={`group flex flex-col items-stretch transition-all duration-300 cursor-pointer ${
+                activeTrack === 'grad-school' ? 'scale-[1.01]' : 'hover:translate-y-[-2px]'
+              }`}
+            >
+              {/* 회색조 파란색 헤더 */}
+              <div className={`py-4.5 px-4 text-center rounded-2xl font-black text-xs text-white transition-all duration-300 ${
+                activeTrack === 'grad-school' 
+                  ? 'bg-blue-600 shadow-md ring-2 ring-blue-500 ring-offset-2' 
+                  : 'bg-[#788fa5] group-hover:bg-[#687e94]'
+              }`}>
+                대학원 진학
+              </div>
+              
+              {/* 연결 수직 선 */}
+              <div className="w-px h-3.5 bg-gray-300 mx-auto" />
+              
+              {/* 본문 카드 */}
+              <div className={`p-5 bg-white border rounded-2xl shadow-xs transition-all duration-300 flex-1 flex flex-col justify-between ${
+                activeTrack === 'grad-school' 
+                  ? 'border-blue-500 shadow-sm bg-blue-50/20' 
+                  : 'border-slate-200 group-hover:border-slate-300'
+              }`}>
+                <ul className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>연구소, 조사회사, 학자 양성 위해 사회조사 실무 등 교수진 연구 참여 활동</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4fc3f7] shrink-0 mt-1.5" />
+                    <span>해외 대학 교환프로그램 참여</span>
+                  </li>
+                </ul>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[9.5px] font-black text-slate-400">전문 리서치/R&D 역량</span>
+                  <span className={`text-[9.5px] font-black px-2 py-0.5 rounded ${
+                    activeTrack === 'grad-school' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeTrack === 'grad-school' ? '선택 해제 ✕' : '과목 하이라이트 ＋'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         {/* 선택된 트랙 상세 브리핑 플레이트 */}
@@ -1501,7 +1748,7 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
                 </h4>
               </div>
               <span className="text-[11px] font-bold text-slate-500 bg-white border border-slate-200 px-2 py-1 rounded-md">
-                권장교과목 총 {activeTrackInfo.recommendedCourses.length}개 편성
+                권장교과목 총 {activeTrackInfo.recommendedCourses.length}개 편성 (아래 목록에서 빛나게 하이라이트됩니다)
               </span>
             </div>
 
