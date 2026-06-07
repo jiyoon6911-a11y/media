@@ -23,6 +23,14 @@ interface EquipmentViewerProps {
   activeSubcategory: string;
 }
 
+const deptLabels: Record<string, string> = {
+  all: '전체기기',
+  bio: '입체모니터/모듈',
+  efficacy: '입체촬영 리그',
+  maker: '시네마 대형바디',
+  etc: '짐벌/안정화 장비'
+};
+
 export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast }: EquipmentViewerProps) {
   const [selectedDept, setSelectedDept] = useState<'all' | 'bio' | 'efficacy' | 'maker' | 'etc'>('all');
   const [selectedHangul, setSelectedHangul] = useState<string>('전체');
@@ -48,7 +56,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop',
       specs: [
         '3D 입체 편광 이중 패널 스크린 특허 탑재',
         'SDI/HDMI 하드웨어 이중 신호 인터페이스 수용',
@@ -61,8 +69,8 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 수업용 : 전일부터 수업당일\n● 실습용 : 신청일 반출일을 포함한 3일 이내 온라인 선약 접수',
       thumbnails: [
+        'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=300&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=300&auto=format&fit=crop'
       ]
     },
@@ -77,7 +85,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1616423640778-28d1b53229b8?q=80&w=600&auto=format&fit=crop',
       specs: [
         '이중 동조 카메라 정밀 합치를 위한 프로 입체 리그 구동계',
         'Redrover 정적 시차 제어 보정 보조 조향 리글 암 장착',
@@ -89,9 +97,9 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 수업용 : 전일부터 수업당일\n● 실습용 : 최대 3박4일 이내 보존 서약 작성 수령',
       thumbnails: [
+        'https://images.unsplash.com/photo-1616423640778-28d1b53229b8?q=80&w=300&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=300&auto=format&fit=crop'
       ]
     },
     {
@@ -105,7 +113,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=600&auto=format&fit=crop',
       specs: [
         '소형 렌즈 및 본체 결합형 직각 빔 분할 3D 고정 마운트',
         '정밀 마이크로 스케일 제어 노브 탑재(보정값 오차 0.01mm 이내)',
@@ -117,8 +125,8 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 강습 수업 및 자습 실습 공용 가능\n● 전용 완충 운송용 무충격 하드 케이스 패키징 반출',
       thumbnails: [
-        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=300&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
       ]
     },
     {
@@ -132,7 +140,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3455',
       managerEmail: 'hnyoon@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=600&auto=format&fit=crop',
       specs: [
         '사이드 바이 사이드 평행 입체 촬영용 초미세 고하중 리거 암',
         '초정밀 레이저 식각 수치 제어 보드 장착',
@@ -144,7 +152,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 3D 모션 촬영 장비 전공 입문자의 경우 대여 전 시연 실습을 이수하셔야 합니다.',
       thumbnails: [
-        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=300&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=300&auto=format&fit=crop',
         'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
       ]
     },
@@ -159,7 +167,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3455',
       managerEmail: 'hnyoon@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop',
       specs: [
         '직교형 빔 스플리터와 평행형 수평 레일을 신속히 전환하는 가변형 통합 리그',
         'Genus 오리지널 하프 실버 코팅 광학 빔 스플리터 반투과 미러 장치 내장',
@@ -171,8 +179,8 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 미러 부위 접촉 및 이물질 주입 절대 엄금 (수리 비용 변상 동의서 지참)',
       thumbnails: [
-        'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=300&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=300&auto=format&fit=crop'
       ]
     },
     {
@@ -346,7 +354,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-4 gap-3">
           <div className="flex items-center gap-2 select-none">
             <span className="text-[11px] font-black uppercase text-[#006bd1] tracking-widest bg-sky-50 px-2 py-1 rounded">
-              {item.deptCategory.toUpperCase()} 자산
+              {deptLabels[item.deptCategory] || item.deptCategory.toUpperCase()} 자산
             </span>
             <ChevronRight className="w-3.5 h-3.5 text-gray-300" />
             <span className="text-xs font-bold text-gray-500">통합 기자재 상세 정보</span>
@@ -676,10 +684,10 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       <div className="flex flex-wrap items-center gap-2 mb-4 border-b border-gray-100 pb-4 select-none">
         {[
           { key: 'all', title: '전체기기' },
-          { key: 'bio', title: '의료·바이오융합연구원' },
-          { key: 'efficacy', title: '효능평가부' },
-          { key: 'maker', title: '메이커스페이스' },
-          { key: 'etc', title: '기타' }
+          { key: 'bio', title: '입체모니터/모듈' },
+          { key: 'efficacy', title: '입체촬영 리그' },
+          { key: 'maker', title: '시네마 대형바디' },
+          { key: 'etc', title: '짐벌/안정화 장비' }
         ].map((dept) => (
           <button
             key={dept.key}

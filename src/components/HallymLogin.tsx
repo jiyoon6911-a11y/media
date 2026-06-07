@@ -34,12 +34,12 @@ export default function HallymLogin({ onLoginSuccess, onClose }: HallymLoginProp
     // 로그인 데모 데이터
     // 학번에 따라 이름 매칭하거나, 입력값 그대로 연계
     let name = '김지윤';
-    let dept = '의료·바이오융합연구원';
+    let dept = '미디어스쿨 (콘텐츠제작전공)';
     let phone = '010-2483-3104';
 
     if (userId === '202214112') {
       name = '정재인';
-      dept = '효능평가부';
+      dept = '미디어스쿨 (방송영상전공)';
       phone = '010-3455-1191';
     } else if (userId.length > 0 && userId !== '202315024') {
       name = '사용자';
