@@ -24,6 +24,7 @@ import {
   ArrowRight,
   X
 } from 'lucide-react';
+import AiRoadmapSection from './AiRoadmapSection';
 
 interface CurriculumViewerProps {
   onShowToast: (msg: string) => void;
@@ -289,8 +290,9 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
   // 아이콘으로 졸졸 따라다니는 스트로 (플로팅 챗봇 상담봇 활성화 상태)
   const [isFloatingChatOpen, setIsFloatingChatOpen] = useState(false);
 
-  // AI 커리어 인바디 상태 제어부
-  const [showCareerInbody, setShowCareerInbody] = useState(false);
+  // AI 커리어 인바디 상태 제어부 (홈 > 교과과정 > 미디어커뮤니케이션 > 커리큘럼 > AI 로드맵 탭 연동)
+  const [curriculumTab, setCurriculumTab] = useState<'standard' | 'ai-roadmap'>('standard');
+  const showCareerInbody = false;
   const [admissionType, setAdmissionType] = useState<'transfer' | 'freshman' | 'double-major'>('transfer');
   const [chatMessages, setChatMessages] = useState<Array<{sender: 'bot' | 'user', text: string}>>([
     { sender: 'bot', text: '안녕하세요! 미디어스쿨 AI 커리큘럼 어드바이저입니다 😊 편입생 및 재학생 여러분의 흥미와 진로에 딱 맞는 최적의 로드맵을 지능형 매칭해 드립니다. 궁금한 점을 간편 탭으로 클릭하거나 아래 채팅창에 적어주세요.' }
@@ -554,7 +556,7 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
               
               <button
                 onClick={() => {
-                  setShowCareerInbody(false);
+                  setCurriculumTab('standard');
                   onShowToast('일반 교과과정 개설 교안 통합 가이드 목록으로 회귀했습니다.');
                 }}
                 className="flex items-center justify-center gap-1.5 text-xs font-black text-slate-700 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 border border-gray-200 px-3.5 py-2 rounded-xl transition active:scale-95 cursor-pointer"
@@ -947,7 +949,15 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
           <span className="text-gray-300">&gt;</span>
           <span>미디어커뮤니케이션</span>
           <span className="text-gray-300">&gt;</span>
-          <span className="text-[#006bd1] underline underline-offset-4 decoration-2">커리큘럼</span>
+          {curriculumTab === 'ai-roadmap' ? (
+            <>
+              <span className="cursor-pointer hover:text-slate-900 transition" onClick={() => setCurriculumTab('standard')}>커리큘럼</span>
+              <span className="text-gray-300">&gt;</span>
+              <span className="text-[#006bd1] underline underline-offset-4 decoration-2 font-black">AI 로드맵</span>
+            </>
+          ) : (
+            <span className="text-[#006bd1] underline underline-offset-4 decoration-2">커리큘럼</span>
+          )}
         </div>
         
         {/* 우측 3대 아이콘 액션바 */}
@@ -980,7 +990,7 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
       </div>
 
       {/* 2. 한림 로고 및 대제목 장치 */}
-      <div className="text-center space-y-3 py-4 select-none">
+      <div className="text-center space-y-4 py-4 select-none">
         <div className="flex justify-center items-center gap-2">
           {/* Hallym original wing vector representation */}
           <svg
@@ -992,11 +1002,65 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
           </svg>
           <span className="font-extrabold text-[12px] tracking-widest text-[#006bd1] block uppercase bg-sky-50 px-3 py-1 rounded-full border border-sky-100">Hallym Media curriculum</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight select-none">
-          전공 교육과정 로드맵
+        <h1 className="text-3.5xl sm:text-4xl font-black text-slate-900 tracking-tight select-none">
+          {curriculumTab === 'ai-roadmap' ? 'AI 기반 커리어 로드맵' : '전공 교육과정 로드맵'}
         </h1>
-        <div className="w-16 h-1 bg-[#006bd1] mx-auto rounded-full" />
+        <div className="w-16 h-1 bg-[#006bd1] mx-auto rounded-full mb-6" />
+
+        {/* 탭 카테고리 스위처 */}
+        <div className="flex items-center bg-slate-100 p-1.5 rounded-2xl w-full sm:w-[440px] mx-auto border border-slate-200/40 select-none shadow-3xs">
+          <button
+            onClick={() => {
+              setCurriculumTab('standard');
+              onShowToast('일반 전공 교육과목 목록 가이드로 전환되었습니다.');
+            }}
+            className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-black px-4 py-3 rounded-xl transition duration-200 cursor-pointer ${
+              curriculumTab === 'standard'
+                ? 'bg-white text-[#1b3b6f] shadow-xs'
+                : 'text-gray-500 hover:text-slate-900'
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#006bd1]" />
+            <span>일반 교과과정</span>
+          </button>
+          <button
+            onClick={() => {
+              setCurriculumTab('ai-roadmap');
+              onShowToast('AI 기반 맞춤형 커리어 인바디 로드맵 화면으로 전환되었습니다.');
+            }}
+            className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-black px-4 py-3 rounded-xl transition duration-200 cursor-pointer ${
+              curriculumTab === 'ai-roadmap'
+                ? 'bg-[#006bd1] text-white shadow-xs'
+                : 'text-gray-500 hover:text-slate-900'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
+            <span>AI 로드맵 (커리어 인바디)</span>
+          </button>
+        </div>
       </div>
+
+      {curriculumTab === 'ai-roadmap' && (
+        <AiRoadmapSection
+          admissionType={admissionType}
+          setAdmissionType={setAdmissionType}
+          chatMessages={chatMessages}
+          chatInput={chatInput}
+          setChatInput={setChatInput}
+          isTyping={isTyping}
+          handleSendChatMessage={handleSendChatMessage}
+          selectedJob={selectedJob}
+          activeUser={activeUser}
+          roadmapData={roadmapData}
+          getCourseObj={getCourseObj}
+          setSelectedCourse={setSelectedCourse}
+          onShowToast={onShowToast}
+          setCurriculumTab={setCurriculumTab}
+        />
+      )}
+
+      {curriculumTab === 'standard' && (
+        <div className="space-y-12 w-full">
 
       {/* 3. 전공 교육 개념도 비주얼 박스 */}
       <div className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm select-none relative overflow-hidden">
@@ -1625,8 +1689,9 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
             </span>
             <button
               onClick={() => {
-                setShowCareerInbody(true);
+                setCurriculumTab('ai-roadmap');
                 onShowToast('AI 기반 맞춤형 커리어 인바디 맞춤진단 화면으로 이동했습니다.');
+                window.scrollTo({ top: 380, behavior: 'smooth' });
               }}
               className="text-[11px] font-black text-white bg-gradient-to-r from-[#006bd1] to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-4 py-2.5 rounded-xl flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition cursor-pointer"
             >
@@ -1637,6 +1702,8 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
         </div>
 
       </div>
+      </div>
+      )}
 
       {/* 7. 과목 상세 개별 설명 모달 팝업 가시 영역 */}
       {selectedCourse && (

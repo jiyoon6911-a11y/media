@@ -7,6 +7,14 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Search, FileSpreadsheet, CalendarDays, CheckCircle2, AlertCircle, Info, ChevronRight, CornerDownRight, ArrowLeft } from 'lucide-react';
 import { Equipment } from '../types';
+import media1 from '../media1.png';
+import media2 from '../media2.png';
+import media3 from '../media3.png';
+import media4 from '../media4.png';
+import media5 from '../media5.png';
+import media6 from '../media6.png';
+import media7 from '../media7.png';
+import media8 from '../media8.png';
 
 interface ExtendedEquipment extends Equipment {
   productName: string;      // 품명 (예: LCD모니터)
@@ -56,7 +64,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop',
+      image: media1,
       specs: [
         '3D 입체 편광 이중 패널 스크린 특허 탑재',
         'SDI/HDMI 하드웨어 이중 신호 인터페이스 수용',
@@ -68,11 +76,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '교육이수자(담당자확인)',
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 수업용 : 전일부터 수업당일\n● 실습용 : 신청일 반출일을 포함한 3일 이내 온라인 선약 접수',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media1]
     },
     {
       id: 'eq-z02',
@@ -85,7 +89,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1616423640778-28d1b53229b8?q=80&w=600&auto=format&fit=crop',
+      image: media2,
       specs: [
         '이중 동조 카메라 정밀 합치를 위한 프로 입체 리그 구동계',
         'Redrover 정적 시차 제어 보정 보조 조향 리글 암 장착',
@@ -96,11 +100,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '교육이수자(담당자확인)',
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 수업용 : 전일부터 수업당일\n● 실습용 : 최대 3박4일 이내 보존 서약 작성 수령',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1616423640778-28d1b53229b8?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media2]
     },
     {
       id: 'eq-z03',
@@ -113,7 +113,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3104',
       managerEmail: 'dlswowjd@naver.com',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=600&auto=format&fit=crop',
+      image: media3,
       specs: [
         '소형 렌즈 및 본체 결합형 직각 빔 분할 3D 고정 마운트',
         '정밀 마이크로 스케일 제어 노브 탑재(보정값 오차 0.01mm 이내)',
@@ -124,10 +124,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '교육이수자(담당자확인)',
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 기자재 신청기간\n● 강습 수업 및 자습 실습 공용 가능\n● 전용 완충 운송용 무충격 하드 케이스 패키징 반출',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media3]
     },
     {
       id: 'eq-z04',
@@ -140,7 +137,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3455',
       managerEmail: 'hnyoon@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=600&auto=format&fit=crop',
+      image: media4,
       specs: [
         '사이드 바이 사이드 평행 입체 촬영용 초미세 고하중 리거 암',
         '초정밀 레이저 식각 수치 제어 보드 장착',
@@ -151,10 +148,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '교육이수자(담당자확인)',
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 3D 모션 촬영 장비 전공 입문자의 경우 대여 전 시연 실습을 이수하셔야 합니다.',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media4]
     },
     {
       id: 'eq-z05',
@@ -167,7 +161,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-3455',
       managerEmail: 'hnyoon@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=600&auto=format&fit=crop',
+      image: media5,
       specs: [
         '직교형 빔 스플리터와 평행형 수평 레일을 신속히 전환하는 가변형 통합 리그',
         'Genus 오리지널 하프 실버 코팅 광학 빔 스플리터 반투과 미러 장치 내장',
@@ -178,10 +172,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '교육이수자(담당자확인)',
       rentLocation: '교무팀 창작지원실 (영상관 2층 3203호)',
       guideNotice: '* 미러 부위 접촉 및 이물질 주입 절대 엄금 (수리 비용 변상 동의서 지참)',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media5]
     },
     {
       id: 'eq-z06',
@@ -194,7 +185,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-2890',
       managerEmail: 'creativepark@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1620626011160-9928f1b2b634?q=80&w=600&auto=format&fit=crop',
+      image: media6,
       specs: [
         '6K 풀프레임 센서 및 고감도 이중 네이티브 ISO (800 / 4000) 지원',
         '고속 하이브리드 AF 시스템 및 리얼타임 피사체 추적 기능 탑재',
@@ -205,10 +196,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '연구원 및 책임교수 연장',
       rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
       guideNotice: '* 콘텐츠제작 전공 또는 방송영상 실습 과목 수강생만 대여 승인이 정규 인정됩니다.',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1620626011160-9928f1b2b634?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media6]
     },
     {
       id: 'eq-z07',
@@ -221,7 +209,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-2890',
       managerEmail: 'creativepark@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop',
+      image: media7,
       specs: [
         '라지 포맷 4.5K 액티브 센서 고화질 디테일 시네마 이미지 수집',
         'ARRIRAW 내부 고독 도트 레이트 녹화 지원 및 실시간 LBUS 제어 포트 완비',
@@ -232,10 +220,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '융합학과 교육이수 대학원생',
       rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
       guideNotice: '* 최고가 장비이므로, 반드시 책임지도교수 동행 자필 승인 서약 및 전용 대여 보험서류 제출이 완료되어야 반출 가능합니다.',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media7]
     },
     {
       id: 'eq-z08',
@@ -248,7 +233,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       managerPhone: '033-248-1191',
       managerEmail: 'mediakim@hallym.ac.kr',
       status: '점검중',
-      image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=600&auto=format&fit=crop',
+      image: media8,
       specs: [
         '풀프레임 Zenmuse X9 8K 카메라 및 4축 액티브 헤드 안정화 시스템',
         'LiDAR 레이저 핀포인트 초점 조향 실시간 연동 및 자동 3D 연속 팔로우 포커싱',
@@ -259,9 +244,7 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
       rentLevel: '융합연구원 담당 수료생',
       rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
       guideNotice: '* 현재 4축 틸트 제어 노브 정밀 보정 작업 및 LiDAR 스캐너 펌웨어 업데이트 출하 캘리브레이션 테스트 중으로 일시 중단 상태입니다.',
-      thumbnails: [
-        'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=300&auto=format&fit=crop'
-      ]
+      thumbnails: [media8]
     }
   ];
 
