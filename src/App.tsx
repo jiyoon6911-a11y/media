@@ -11,6 +11,7 @@ import EquipmentViewer from './components/EquipmentViewer';
 import RentalForm from './components/RentalForm';
 import RentalScheduler from './components/RentalScheduler';
 import HallymLogin from './components/HallymLogin';
+import CurriculumViewer from './components/CurriculumViewer';
 import { RentalRequest } from './types';
 import { ArrowUp, MapPin, Phone, Mail, HelpCircle, CheckCircle, Info, Layers, ClipboardEdit, CalendarRange, BookOpen } from 'lucide-react';
 
@@ -289,6 +290,10 @@ export default function App() {
           {activeMenu === '기기예약' ? (
             <div className="animate-fadeIn">
               {renderCoreTabContent()}
+            </div>
+          ) : activeMenu === '교과과정' ? (
+            <div className="animate-fadeIn">
+              <CurriculumViewer onShowToast={showToast} />
             </div>
           ) : (
             // 혹시 '기기예약' 외에 다른 상단 대메뉴 선택 시에 대한 안전장치
