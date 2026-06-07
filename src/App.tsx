@@ -293,7 +293,11 @@ export default function App() {
             </div>
           ) : activeMenu === '교과과정' ? (
             <div className="animate-fadeIn">
-              <CurriculumViewer onShowToast={showToast} />
+              <CurriculumViewer 
+                onShowToast={showToast} 
+                loggedInUser={loggedInUser}
+                isLoggedIn={isLoggedIn}
+              />
             </div>
           ) : (
             // 혹시 '기기예약' 외에 다른 상단 대메뉴 선택 시에 대한 안전장치
