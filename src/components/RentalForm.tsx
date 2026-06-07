@@ -10,6 +10,7 @@ import { FileDown, Printer, AlertCircle, Edit, Trash2, Undo, CheckCircle2, Check
 interface RentalFormProps {
   initialEquipment?: string;
   onShowToast: (msg: string) => void;
+  loggedInUser?: { name: string; studentId: string; phone: string; department: string } | null;
   onSubmitSuccess?: (req: {
     applicantName: string;
     studentId: string;
@@ -25,7 +26,12 @@ interface RentalFormProps {
   }) => void;
 }
 
-export default function RentalForm({ initialEquipment = '', onShowToast, onSubmitSuccess }: RentalFormProps) {
+export default function RentalForm({ 
+  initialEquipment = '', 
+  onShowToast, 
+  onSubmitSuccess,
+  loggedInUser 
+}: RentalFormProps) {
   // Signature Drawing state
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -35,7 +41,7 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
   const [applicant, setApplicant] = useState('');
   const [studentId, setStudentId] = useState('');
   const [phone, setPhone] = useState('');
-  const [department, setDepartment] = useState('의료·바이오융합연구원');
+  const [department, setDepartment] = useState('미디어스쿨');
   const [advisor, setAdvisor] = useState('');
   const [purpose, setPurpose] = useState('');
   const [rentalDate, setRentalDate] = useState('2026-06-08');
@@ -44,7 +50,7 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
 
   // Selected Equipment Rows
   const [selectedGears, setSelectedGears] = useState<Array<{ name: string; qty: number }>>([
-    { name: initialEquipment || '광학현미경A1', qty: 1 }
+    { name: initialEquipment || '소니 PXW-FX9 시네마 캠코더', qty: 1 }
   ]);
 
   // Synchronize initial equipment if passed down
@@ -56,6 +62,16 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
       }
     }
   }, [initialEquipment]);
+
+  // Synchronize applicant form inputs with logged in session
+  useEffect(() => {
+    if (loggedInUser) {
+      setApplicant(loggedInUser.name);
+      setStudentId(loggedInUser.studentId);
+      setPhone(loggedInUser.phone);
+      setDepartment(loggedInUser.department);
+    }
+  }, [loggedInUser]);
 
   // Signature board canvas setup & actions
   useEffect(() => {
@@ -131,7 +147,7 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
 
   // Add equipment slot
   const handleAddEquipmentRow = () => {
-    setSelectedGears([...selectedGears, { name: '광학현미경A1', qty: 1 }]);
+    setSelectedGears([...selectedGears, { name: '소니 PXW-FX9 시네마 캠코더', qty: 1 }]);
   };
 
   // Modify slot
@@ -149,7 +165,7 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
 
   const handleRemoveGearRow = (index: number) => {
     const updated = selectedGears.filter((_, i) => i !== index);
-    setSelectedGears(updated.length ? updated : [{ name: '광학현미경A1', qty: 1 }]);
+    setSelectedGears(updated.length ? updated : [{ name: '소니 PXW-FX9 시네마 캠코더', qty: 1 }]);
   };
 
   // Submit Application
@@ -347,12 +363,14 @@ export default function RentalForm({ initialEquipment = '', onShowToast, onSubmi
                     onChange={(e) => handleUpdateGearName(idx, e.target.value)}
                     className="w-full text-xs font-bold px-2 py-1.5 bg-slate-50 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-[#006bd1]"
                   >
-                    <option>광학현미경A1</option>
-                    <option>광학현미경A1(Inverted)</option>
-                    <option>광학현미경</option>
-                    <option>탄뎀페브리페롯간섭계</option>
-                    <option>초정밀 3D 스캐닝 메이커 기기</option>
-                    <option>고효능 물질 활성화 배양기</option>
+                    <option>소니 PXW-FX9 시네마 캠코더</option>
+                    <option>아리 알렉사 미니 LF</option>
+                    <option>디제이아이 로닌 4D 짐벌 카메라</option>
+                    <option>소형직교리그 RB-100</option>
+                    <option>수평리그 3D SXS RIG (micro)</option>
+                    <option>직교(수평 겸용)리그 Hurricane 3D RIG (Genus)</option>
+                    <option>3D모니터 SDM-080 SDI</option>
+                    <option>SDC-S200 (Redrover)</option>
                   </select>
                 </div>
 

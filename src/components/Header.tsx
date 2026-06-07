@@ -9,9 +9,20 @@ import { Bell, Menu, ChevronDown, Globe, LogIn } from 'lucide-react';
 interface HeaderProps {
   activeMenu: string;
   setActiveMenu: (menu: string) => void;
+  isLoggedIn: boolean;
+  loggedInUser: { name: string; studentId: string; phone: string; department: string } | null;
+  onLogout: () => void;
+  onLoginTrigger: () => void;
 }
 
-export default function Header({ activeMenu, setActiveMenu }: HeaderProps) {
+export default function Header({
+  activeMenu,
+  setActiveMenu,
+  isLoggedIn,
+  loggedInUser,
+  onLogout,
+  onLoginTrigger
+}: HeaderProps) {
   const [showNotification, setShowNotification] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -65,14 +76,32 @@ export default function Header({ activeMenu, setActiveMenu }: HeaderProps) {
 
           {/* Right sides */}
           <div className="flex items-center gap-4 text-gray-400">
-            <button
-              onClick={() => showToast('로그인 버튼이 클릭되었습니다.')}
-              className="hover:text-white flex items-center gap-1.5 cursor-pointer text-[11px]"
-              id="top-login"
-            >
-              <LogIn className="w-3.5 h-3.5" />
-              로그인
-            </button>
+            {isLoggedIn && loggedInUser ? (
+              <div className="flex items-center gap-2 select-none text-[11px] text-gray-300">
+                <span className="font-extrabold text-sky-400">{loggedInUser.name}</span>
+                <span className="text-gray-500">({loggedInUser.studentId})</span>
+                <span className="text-gray-500">님 로그인 중</span>
+                <button
+                  onClick={() => {
+                    onLogout();
+                    showToast('성공적으로 로그아웃 되었습니다.');
+                  }}
+                  className="ml-2 hover:text-white bg-gray-800 hover:bg-slate-700 text-gray-300 px-2.5 py-1 rounded text-[10px] cursor-pointer transition active:scale-95 font-black uppercase"
+                  id="top-logout-btn"
+                >
+                  로그아웃
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onLoginTrigger}
+                className="hover:text-white flex items-center gap-1.5 cursor-pointer text-[11px]"
+                id="top-login"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                로그인
+              </button>
+            )}
             <div className="h-3 w-[1px] bg-gray-800" />
             <div className="flex items-center gap-1 hover:text-white cursor-pointer text-[11px] group">
               <Globe className="w-3.5 h-3.5 text-gray-400 group-hover:text-white" />

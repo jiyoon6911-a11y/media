@@ -177,81 +177,82 @@ export default function EquipmentViewer({ onSelectEquipmentForForm, onShowToast 
     },
     {
       id: 'eq-z06',
-      nameKo: '광학현미경A1',
-      nameEn: 'Confocal Optical Microscope A1 System',
+      nameKo: '소니 PXW-FX9 시네마 캠코더',
+      nameEn: 'Sony PXW-FX9 Full-Frame Cinema Camera',
       zeusNo: 'NFEC-2025-11-310028',
-      abbr: 'OPT-A1',
+      abbr: 'FX9',
       deptCategory: 'maker',
-      managerName: '박메이커',
+      managerName: '박창작',
       managerPhone: '033-248-2890',
-      managerEmail: 'makerpark@hallym.ac.kr',
+      managerEmail: 'creativepark@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1620626011160-9928f1b2b634?q=80&w=600&auto=format&fit=crop',
       specs: [
-        '고해상도 다파장 레이저 스캔 공초점 형광 광학 검체계',
-        '독립 고대비 실시간 형광 이미징 추출 프로그램 연동 보드',
-        '생명과학 및 나노 신소제 표면 조도 복원 마스터링 탑재'
+        '6K 풀프레임 센서 및 고감도 이중 네이티브 ISO (800 / 4000) 지원',
+        '고속 하이브리드 AF 시스템 및 리얼타임 피사체 추적 기능 탑재',
+        '15스톱+ 다이내믹 레인지와 화려한 S-Cinetone 색상 과학 탑재'
       ],
-      productName: '기초 정밀현미경',
-      standard: 'Optical microscope A1 Confocal',
+      productName: '풀프레임 시네마 카메라',
+      standard: 'PXW-FX9 Dual Base ISO System',
       rentLevel: '연구원 및 책임교수 연장',
-      rentLocation: '일송기념관 지하 1층 나노융합종합 기기소',
-      guideNotice: '* 바이오 전문 실험 과목의 학과 학년생만 대여 승인이 정규 인정됩니다.',
+      rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
+      guideNotice: '* 콘텐츠제작 전공 또는 방송영상 실습 과목 수강생만 대여 승인이 정규 인정됩니다.',
       thumbnails: [
-        'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=300&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1620626011160-9928f1b2b634?q=80&w=300&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
       ]
     },
     {
       id: 'eq-z07',
-      nameKo: '탄뎀페브리페롯간섭계',
-      nameEn: 'Tandem Fabry-Perot Laser Interferometer',
+      nameKo: '아리 알렉사 미니 LF',
+      nameEn: 'ARRI ALEXA Mini LF Cinema Camera',
       zeusNo: 'NFEC-2015-11-210452',
-      abbr: 'TFPI',
+      abbr: 'ARRI-LF',
       deptCategory: 'maker',
-      managerName: '박메이커',
+      managerName: '박창작',
       managerPhone: '033-248-2890',
-      managerEmail: 'makerpark@hallym.ac.kr',
+      managerEmail: 'creativepark@hallym.ac.kr',
       status: '정상',
-      image: 'https://images.unsplash.com/photo-1631553127988-3487c64fb2bc?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=600&auto=format&fit=crop',
       specs: [
-        '미세 브릴루앙 탄성 산란 분석용 다중 패스 투사 간섭 주사계',
-        '자동 진동 절연 에어 브래킷 마운팅 암 일체형',
-        '레이저 주사 분석 교정 규격 대조 테스트 보드 연동 완료'
+        '라지 포맷 4.5K 액티브 센서 고화질 디테일 시네마 이미지 수집',
+        'ARRIRAW 내부 고독 도트 레이트 녹화 지원 및 실시간 LBUS 제어 포트 완비',
+        '드라마, 영화, 고품격 광고 영상 프로덕션 핵심 규격 사양 장비'
       ],
-      productName: '레이저 주사 간섭계',
-      standard: 'TFP Interferometer Spec-V',
+      productName: '라지포맷 시네마 카메라',
+      standard: 'ARRI ALEXA Mini LF Gold Mount',
       rentLevel: '융합학과 교육이수 대학원생',
-      rentLocation: '산학협력관 신소재 분석 종합 기기실 1호',
-      guideNotice: '* 상시 주사 출력량이 높으므로, 반드시 전용 보안경 착용 후 가동 규약 준수 요망',
+      rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
+      guideNotice: '* 최고가 장비이므로, 반드시 책임지도교수 동행 자필 승인 서약 및 전용 대여 보험서류 제출이 완료되어야 반출 가능합니다.',
       thumbnails: [
-        'https://images.unsplash.com/photo-1631553127988-3487c64fb2bc?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=300&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=300&auto=format&fit=crop'
       ]
     },
     {
       id: 'eq-z08',
-      nameKo: '고효능 물질 활성화 배양기',
-      nameEn: 'Smart High-Performance Incubator Chamber',
+      nameKo: '디제이아이 로닌 4D 짐벌 카메라',
+      nameEn: 'DJI Ronin 4D 4-Axis Gimbal Camera System',
       zeusNo: 'NFEC-2019-12-110056',
-      abbr: 'HPInc',
+      abbr: 'RONIN4D',
       deptCategory: 'etc',
       managerName: '김연구원',
       managerPhone: '033-248-1191',
-      managerEmail: 'incubator_kim@hallym.ac.kr',
+      managerEmail: 'mediakim@hallym.ac.kr',
       status: '점검중',
-      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=600&auto=format&fit=crop',
       specs: [
-        '스마트 온습도 정밀 환경 시뮬레이션 이산화탄소 대조 챔버',
-        '세균 및 바이러스 이탈 방지 헤파필터 마이크로 환기 기전',
-        '원격 장비 작동 및 내부 액티브 촬영 추적 고속 포커스 내장'
+        '풀프레임 Zenmuse X9 8K 카메라 및 4축 액티브 헤드 안정화 시스템',
+        'LiDAR 레이저 핀포인트 초점 조향 실시간 연동 및 자동 3D 연속 팔로우 포커싱',
+        'O3 Pro 고대역 무선 영상 송수신 모니터 세트 통합 연동 조향 세션 구성'
       ],
-      productName: '고효능 배양 챔버',
-      standard: 'High-Performance Incubator Smart V3',
+      productName: '4축 일체형 짐벌 카메라',
+      standard: 'DJI Ronin 4D 8K Combo',
       rentLevel: '융합연구원 담당 수료생',
-      rentLocation: '효능연구관 2층 종합 배양 저장실',
-      guideNotice: '* 현재 메인 흡배기 히터 모터 정기 정밀 검차 교정 작동으로 인해 대여 요청 통제기 발동 상태입니다.',
+      rentLocation: '영상관 2층 창작지원 기자재 보관실 (3203호)',
+      guideNotice: '* 현재 4축 틸트 제어 노브 정밀 보정 작업 및 LiDAR 스캐너 펌웨어 업데이트 출하 캘리브레이션 테스트 중으로 일시 중단 상태입니다.',
       thumbnails: [
-        'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=300&auto=format&fit=crop'
+        'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=300&auto=format&fit=crop'
       ]
     }
   ];

@@ -10,6 +10,7 @@ import BreadcrumbBar from './components/BreadcrumbBar';
 import EquipmentViewer from './components/EquipmentViewer';
 import RentalForm from './components/RentalForm';
 import RentalScheduler from './components/RentalScheduler';
+import HallymLogin from './components/HallymLogin';
 import { RentalRequest } from './types';
 import { ArrowUp, MapPin, Phone, Mail, HelpCircle, CheckCircle, Info, Layers, ClipboardEdit, CalendarRange, BookOpen } from 'lucide-react';
 
@@ -18,6 +19,17 @@ export default function App() {
   const [activeSubcategory, setActiveSubcategory] = useState('대여 가능 장비보기');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // 한림 통합 로그인 인증 상태 관리
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState<{
+    name: string;
+    studentId: string;
+    phone: string;
+    department: string;
+  } | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [targetTabAfterLogin, setTargetTabAfterLogin] = useState<string | null>(null);
 
   // 선택된 대여 희망 기기 자동 바인딩을 위한 상태값
   const [initialEquipment, setInitialEquipment] = useState('');
@@ -29,12 +41,12 @@ export default function App() {
       applicantName: '김지윤',
       studentId: '202315024',
       phone: '010-2483-3104',
-      department: '의료·바이오융합연구원',
-      advisor: '이바이오 교수님',
-      purpose: '세포 배양 정밀 광학 모니터링 실습',
+      department: '미디어스쿨',
+      advisor: '이미디어 교수님',
+      purpose: '다큐멘터리 가을 색채 수치 6K 시네마토그래피 야외 실습',
       rentalDate: '2026-06-08',
       returnDate: '2026-06-10',
-      equipmentItemName: '광학현미경A1',
+      equipmentItemName: '소니 PXW-FX9 시네마 캠코더',
       quantity: 1,
       status: 'approved',
       createdAt: '2026-06-06 14:24',
@@ -45,12 +57,12 @@ export default function App() {
       applicantName: '정재인',
       studentId: '202214112',
       phone: '010-3455-1191',
-      department: '효능평가부',
-      advisor: '박효능 교수님',
-      purpose: '탄성 분광 스펙트럼 수집 실험',
+      department: '미디어스쿨',
+      advisor: '박크리에이티브 교수님',
+      purpose: '졸업작품 상업 단편영화 야간 4.5K HDR 연출 세션 수집',
       rentalDate: '2026-06-12',
       returnDate: '2026-06-15',
-      equipmentItemName: '탄뎀페브리페롯간섭계',
+      equipmentItemName: '아리 알렉사 미니 LF',
       quantity: 1,
       status: 'pending',
       createdAt: '2026-06-07 09:12',
@@ -83,8 +95,43 @@ export default function App() {
     }, 3200);
   };
 
+  // 한림 통합 로그인 콜백 제어부
+  const handleLoginSuccess = (user: { name: string; studentId: string; phone: string; department: string }) => {
+    setIsLoggedIn(true);
+    setLoggedInUser(user);
+    setShowLoginModal(false);
+    
+    // 만약 신청하기 등 이동하려던 대상이 지정되어 있었다면 거기로 바로 활성화 스위치
+    if (targetTabAfterLogin) {
+      setActiveSubcategory(targetTabAfterLogin);
+      setTargetTabAfterLogin(null);
+    }
+    showToast(`통합 로그인 성공! 어서오세요, ${user.name}님.`);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setLoggedInUser(null);
+    setActiveSubcategory('대여 가능 장비보기');
+    setInitialEquipment('');
+    showToast('안전하게 로그아웃 되었습니다.');
+  };
+
+  const handleLoginTrigger = () => {
+    setTargetTabAfterLogin(null);
+    setShowLoginModal(true);
+    showToast('통합정보 로그인 화면을 호출합니다.');
+  };
+
   // 장비 뷰어에서 [신청하기] 클릭 시 본 가이더로 위임 자동 탑재 가동
   const handleSelectEquipmentForForm = (eqName: string) => {
+    if (!isLoggedIn) {
+      setInitialEquipment(eqName);
+      setTargetTabAfterLogin('대여 신청하기');
+      setShowLoginModal(true);
+      showToast('경고: 장비 대여 신청 기능을 이용하시려면 통합 로그인이 필요합니다.');
+      return;
+    }
     setInitialEquipment(eqName);
     setActiveSubcategory('대여 신청하기');
     showToast(`"${eqName}" 기기가 대여 신청 양식에 성공적으로 바인딩되었습니다.`);
@@ -111,6 +158,21 @@ export default function App() {
 
   // 3대 핵심 탭에 따른 라우터 컴포넌트 렌더링
   const renderCoreTabContent = () => {
+    // 탭 보호 필터링 바인딩
+    if (activeSubcategory !== '대여 가능 장비보기' && !isLoggedIn) {
+      return (
+        <div className="py-6 scale-95 transition-all">
+          <HallymLogin
+            onLoginSuccess={handleLoginSuccess}
+            onClose={() => {
+              setActiveSubcategory('대여 가능 장비보기');
+              showToast('통합 로그인이 완료되지 않아 자산목록 조회 탭으로 스키마 회귀 조치되었습니다.');
+            }}
+          />
+        </div>
+      );
+    }
+
     switch (activeSubcategory) {
       case '대여 가능 장비보기':
         return (
@@ -126,6 +188,7 @@ export default function App() {
             initialEquipment={initialEquipment}
             onShowToast={showToast}
             onSubmitSuccess={handleSubmitSuccess}
+            loggedInUser={loggedInUser}
           />
         );
       case '대여 현황보기':
@@ -151,7 +214,14 @@ export default function App() {
     <div className="min-h-screen bg-[#fafafa] flex flex-col justify-between font-sans relative">
       <div className="w-full">
         {/* Top Header */}
-        <Header activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        <Header 
+          activeMenu={activeMenu} 
+          setActiveMenu={setActiveMenu}
+          isLoggedIn={isLoggedIn}
+          loggedInUser={loggedInUser}
+          onLogout={handleLogout}
+          onLoginTrigger={handleLoginTrigger}
+        />
 
         {/* Hero Section Banner */}
         <HeroSection />
@@ -187,6 +257,12 @@ export default function App() {
                     <button
                       key={tab.id}
                       onClick={() => {
+                        if (tab.id !== '대여 가능 장비보기' && !isLoggedIn) {
+                          setTargetTabAfterLogin(tab.id);
+                          setShowLoginModal(true);
+                          showToast('경고: 해당 탭 서비스는 로그인이 필요하여 통합 로그인 화면으로 연계합니다.');
+                          return;
+                        }
                         setActiveSubcategory(tab.id);
                         showToast(`"${tab.title}" 업무 화면으로 스위치 전환되었습니다.`);
                       }}
@@ -320,6 +396,17 @@ export default function App() {
           <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
           <span>{toastMessage}</span>
         </div>
+      )}
+
+      {/* 한림대학교 통합 로그인 전면 오버레이 (데모 테스트용 취소 Close 지원) */}
+      {showLoginModal && (
+        <HallymLogin
+          onLoginSuccess={handleLoginSuccess}
+          onClose={() => {
+            setShowLoginModal(false);
+            showToast('통합 로그인이 취소되었습니다.');
+          }}
+        />
       )}
     </div>
   );
