@@ -22,13 +22,18 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // 한림 통합 로그인 인증 상태 관리
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [loggedInUser, setLoggedInUser] = useState<{
     name: string;
     studentId: string;
     phone: string;
     department: string;
-  } | null>(null);
+  } | null>({
+    name: '변석영',
+    studentId: '202415082',
+    phone: '010-5231-6911',
+    department: '소프트웨어학부 2학년 (콘텐츠IT전공)'
+  });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [targetTabAfterLogin, setTargetTabAfterLogin] = useState<string | null>(null);
 

@@ -21,7 +21,8 @@ import {
   User,
   Compass,
   Brain,
-  ArrowRight
+  ArrowRight,
+  X
 } from 'lucide-react';
 
 interface CurriculumViewerProps {
@@ -197,11 +198,96 @@ const courseDatabase: Course[] = [
   { code: '300020', name: '탐사피처콘텐츠제작', type: '3-2-2', level: 'III', semester: 2, desc: '복합 취재를 바탕으로 긴 길이의 스토리를 멀티미디어 인터랙티브 웹페이지 혹은 대형 스페셜 방송 특집 형태로 디자인 배급하는 통합실전 프로젝트.' }
 ];
 
+export interface JobProfile {
+  jobName: string;
+  description: string;
+  recommendedCourses: string[];
+  milestones: Array<{ step: string; tasks: string }>;
+}
+
+export const jobProfiles: JobProfile[] = [
+  {
+    jobName: "시스템 소프트웨어 엔지니어",
+    description: "한림대학교 소프트웨어학부/콘텐츠IT전공 특화 직무! 컴퓨터 하드웨어 제어 및 오디오/비주얼 소프트웨어 코딩, 핵심 임베디드 코파일럿 프로그래머",
+    recommendedCourses: ["209103", "209666", "300031", "209802", "300021"],
+    milestones: [
+      { step: "1단계 기초 (Grade 1-2)", tasks: "AI미디어프로그래밍기초실습, AI와 뉴스의 미래 수강으로 코딩기초 및 AI 역량 확립" },
+      { step: "2단계 성장 (Grade 2-3)", tasks: "AI와 그래픽인포메이션, 미디어산업과정책을 통한 정책/기술 융합 이수" },
+      { step: "3단계 완성 (Grade 3-4)", tasks: "AI콘텐츠프로젝트(캡스톤디자인) 및 AI서비스사용자경험 이수로 시제품 빌드" }
+    ]
+  },
+  {
+    jobName: "모바일 콘텐츠 개발자 / 가상현실 전문가",
+    description: "AR/VR 및 메타버스 엔진, 모바일 앱/웹 제작, 반응형 인터랙티브 디지털 디자인 코덱 전문가",
+    recommendedCourses: ["300029", "209393", "209666", "300031", "209719"],
+    milestones: [
+      { step: "1단계 기초 (Grade 1-2)", tasks: "영상매체기초: 연출과 촬영 및 보도사진 수강으로 시각 센스 확보" },
+      { step: "2단계 성장 (Grade 2-3)", tasks: "방송영상콘텐츠제작1, 스튜디오자이언트 및 로컬크레이에터 수강" },
+      { step: "3단계 완성 (Grade 3-4)", tasks: "AI콘텐츠프로젝트 및 AI서비스사용자경험 이수로 실감 모바일 서비스 구현" }
+    ]
+  },
+  {
+    jobName: "영상 연출 감독 (PD)",
+    description: "방송국 및 독립 프로덕션, 상업 영화 및 브랜드 다큐 연출 수작 제작 감독",
+    recommendedCourses: ["300029", "209571", "300015", "209393", "209387", "300038"],
+    milestones: [
+      { step: "1단계 기초 (Grade 1-2)", tasks: "영상매체기초: 연출과 촬영, 시놉시스 구상을 통한 스토리 기틀 구축" },
+      { step: "2단계 성장 (Grade 2-3)", tasks: "시나리오 작성, 스튜디오사진 및 영상콘텐츠기획 수강" },
+      { step: "3단계 완성 (Grade 3-4)", tasks: "시사다큐멘터리제작-캡스톤디자인, 단편 다큐멘터리 제작 이수로 대표작 완성" }
+    ]
+  },
+  {
+    jobName: "UI/UX 디자이너",
+    description: "사용자의 인지 심리 기획을 토대로 모바일 앱/웹 화면 UI 설계 및 피그마/리액트 프로토타이퍼",
+    recommendedCourses: ["209802", "209709", "300031", "300021", "209666"],
+    milestones: [
+      { step: "1단계 기초 (Grade 1-2)", tasks: "AI와 뉴스의 미래, 한국언론사 수강으로 기초 리터러시 정립" },
+      { step: "2단계 성장 (Grade 2-3)", tasks: "AI와 그래픽인포메이션, 편집디자인프로젝트를 통한 시각 인터페이스 마스터" },
+      { step: "3단계 완성 (Grade 3-4)", tasks: "AI서비스사용자경험 및 데이터기반콘텐츠 기획실습을 동원한 인터랙티브 제품 설계" }
+    ]
+  },
+  {
+    jobName: "언론 기자 / 정예 저널리스트",
+    description: "공공 탐사, 팩트 수집, 멀티미디어 디지털 보도 실무 중심 언론인",
+    recommendedCourses: ["209378", "209379", "209301", "300001", "209388", "300020"],
+    milestones: [
+      { step: "1단계 기초 (Grade 1-2)", tasks: "뉴스작성기초1, 보도사진, 한국언론사 수강으로 저널 기초 확립" },
+      { step: "2단계 성장 (Grade 2-3)", tasks: "뉴스작성기초2, 데이터저널리즘-캡스톤디자인 이수로 데이터 분석력 배가" },
+      { step: "3단계 완성 (Grade 3-4)", tasks: "탐사저널리즘-캡스톤디자인, 탐사피처콘텐츠제작 이수로 단독 특종 송출" }
+    ]
+  }
+];
+
 export default function CurriculumViewer({ onShowToast, loggedInUser = null, isLoggedIn = false }: CurriculumViewerProps) {
   const [activeLevel, setActiveLevel] = useState<'I' | 'II' | 'III'>('I');
   const [activeTrack, setActiveTrack] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
+  // 내 수강 이력 연동 상태 값 (변석영님 초기 수강 과목 연동셋)
+  const [completedCourseCodes, setCompletedCourseCodes] = useState<string[]>([
+    '209378', // 뉴스작성기초1
+    '209373', // 보도사진
+    '300029', // 영상매체기초: 연출과 촬영
+    '209803', // AI와 뉴스의 미래
+  ]);
+
+  // 직업 검색 및 희망 직무 선택을 위한 상태
+  const [selectedJob, setSelectedJob] = useState<string>('시스템 소프트웨어 엔지니어');
+  const [customJobSearchQuery, setCustomJobSearchQuery] = useState<string>('');
+
+  const toggleCourseCompleted = (code: string) => {
+    if (completedCourseCodes.includes(code)) {
+      setCompletedCourseCodes(prev => prev.filter(c => c !== code));
+      onShowToast(`[${getCourseObj(code).name}] 과목이 수강이력에서 제외되었습니다.`);
+    } else {
+      setCompletedCourseCodes(prev => [...prev, code]);
+      onShowToast(`[${getCourseObj(code).name}] 과목이 수강완료 이력에 반영되었습니다.`);
+    }
+  };
+
+  // 아이콘으로 졸졸 따라다니는 스트로 (플로팅 챗봇 상담봇 활성화 상태)
+  const [isFloatingChatOpen, setIsFloatingChatOpen] = useState(false);
 
   // AI 커리어 인바디 상태 제어부
   const [showCareerInbody, setShowCareerInbody] = useState(false);
@@ -947,6 +1033,271 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
         </div>
       </div>
 
+      {/* [NEW] 3.5. 내 정보/수강이력 연동 현황 & 희망 직무 맞춤형 커리큘럼 설계기 */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 select-none" id="personal-curriculum-planner">
+        
+        {/* A. 내 정보 & 수강 이력 연동 카드 (4/12 영역) */}
+        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-5">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-black tracking-widest text-[#006bd1] uppercase block bg-blue-50 px-2.5 py-1 rounded-md">
+                HALLYM INTEGRATION PORTAL
+              </span>
+              <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md flex items-center gap-1 animate-pulse">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                자동 연동 완료
+              </span>
+            </div>
+            
+            <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+              👤 내 정보 & 수강이력 현황 (학적부)
+            </h3>
+            <p className="text-gray-500 text-xs font-semibold mt-1">
+              본교 한림통합정보 포털의 학업 데이터와 실시간 연동된 보안 매칭 현황 정보입니다.
+            </p>
+          </div>
+
+          {/* 통합 학생 프로필 */}
+          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-[#006bd1] text-white flex items-center justify-center font-black shadow-sm text-sm">
+                석영
+              </div>
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-1.5">
+                  <h4 className="text-sm font-black text-slate-900">변석영</h4>
+                  <span className="text-[9.5px] text-[#006bd1] bg-[#006bd1]/10 px-1.5 py-0.5 rounded font-black">
+                    학적 연동중
+                  </span>
+                </div>
+                <p className="text-[11px] text-gray-500 font-bold">
+                  소프트웨어학부 2학년 (콘텐츠IT전공)
+                </p>
+              </div>
+            </div>
+
+            {/* 수강 완료 현황 인디케이터 */}
+            <div className="border-t border-gray-200/60 pt-3.5 space-y-2">
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-bold text-slate-700">진로 설계 전체 진행률</span>
+                <span className="font-mono font-black text-[#006bd1]">
+                  {((completedCourseCodes.length / 16) * 100).toFixed(0)}%
+                </span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+                <div 
+                  className="bg-gradient-to-r from-[#006bd1] to-purple-600 h-2.5 rounded-full transition-all duration-500"
+                  style={{ width: `${Math.min(100, (completedCourseCodes.length / 16) * 100)}%` }}
+                />
+              </div>
+              <div className="flex justify-between items-center text-[10.5px] text-gray-400 font-bold font-mono">
+                <span>이수 과목: {completedCourseCodes.length}개</span>
+                <span>총 취득 학점: {completedCourseCodes.length * 3} / 48 학점</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 수강 과목 연동 제어 목록 */}
+          <div className="space-y-3">
+            <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-widest flex items-center justify-between">
+              <span>연동된 수강 과목 이력 리스트</span>
+              <span className="text-[9.5px] font-bold text-slate-400 lowercase italic">
+                (체크박스를 토글하여 임의 조정할 수 있습니다)
+              </span>
+            </h4>
+            <div className="grid grid-cols-1 gap-2 max-h-[195px] overflow-y-auto pr-1">
+              {courseDatabase.slice(0, 10).map((course) => {
+                const isCompleted = completedCourseCodes.includes(course.code);
+                return (
+                  <button
+                    key={course.code}
+                    onClick={() => toggleCourseCompleted(course.code)}
+                    className={`flex items-center justify-between p-2.5 rounded-xl border text-left transition cursor-pointer text-xs font-semibold ${
+                      isCompleted 
+                        ? 'bg-emerald-50/60 border-emerald-200 text-emerald-900 hover:bg-emerald-50' 
+                        : 'bg-slate-50/40 border-slate-100 text-slate-600 hover:bg-slate-50 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className={`w-4 h-4 rounded flex items-center justify-center transition ${
+                        isCompleted ? 'bg-emerald-500 text-white' : 'border border-gray-300'
+                      }`}>
+                        {isCompleted && <span className="text-[10px] font-black">✓</span>}
+                      </div>
+                      <span className="font-extrabold max-w-[140px] truncate">{course.name}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 font-mono text-[10px]">
+                      <span className="text-gray-400">({course.code})</span>
+                      <span className={`px-1.5 py-0.2 rounded font-black ${
+                        isCompleted ? 'bg-emerald-200 text-emerald-800' : 'bg-gray-200 text-gray-500'
+                      }`}>
+                        {isCompleted ? 'A+' : '미수강'}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* B. 직업 검색 및 희망 직무 선택 맞춤 커리큘럼 설계기 (7/12 영역) */}
+        <div className="lg:col-span-7 bg-white border border-gray-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between space-y-6">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-black tracking-widest text-purple-600 uppercase block bg-purple-50 px-2.5 py-1 rounded-md">
+                DYNAMIC CURRICULUM ARCHITECTBY AI
+              </span>
+            </div>
+            <h3 className="text-lg font-black text-slate-900 tracking-tight flex items-center gap-2">
+              🎯 희망 직무 맞춤형 AI 커리큘럼 설계
+            </h3>
+            <p className="text-gray-500 text-xs font-semibold">
+              원하는 직업이나 희망 직무를 검색/선택하면, 이수 완료된 수강이력을 자동으로 융합 반영하여 잔여 학기 맞춤 로드맵을 지능화 빌드해 드립니다.
+            </p>
+          </div>
+
+          {/* 직업 검색 및 상호 연계 필터 인풋 세그먼트 */}
+          <div className="space-y-3 select-none">
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  placeholder="원하는 직무 검색 (예: 개발자, 연출, 기자, 인포그래픽, AR...)"
+                  value={customJobSearchQuery}
+                  onChange={(e) => {
+                    setCustomJobSearchQuery(e.target.value);
+                  }}
+                  className="w-full text-xs font-bold pl-3 pr-8 py-3 bg-slate-50 hover:bg-slate-100/50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:bg-white transition"
+                />
+                {customJobSearchQuery && (
+                  <button
+                    onClick={() => setCustomJobSearchQuery('')}
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-slate-900 text-xs font-bold"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* 빠른 희망 직무 추천 칩 */}
+            <div className="flex flex-wrap gap-1.5">
+              {jobProfiles.map((job) => {
+                const isSelected = selectedJob === job.jobName;
+                return (
+                  <button
+                    key={job.jobName}
+                    onClick={() => {
+                      setSelectedJob(job.jobName);
+                      setCustomJobSearchQuery('');
+                      onShowToast(`[${job.jobName}] 직무에 맞춘 추천 로드맵이 실시간 재설계 완료되었습니다.`);
+                    }}
+                    className={`text-[10.5px] font-black px-3 py-1.5 rounded-full border transition cursor-pointer ${
+                      isSelected 
+                        ? 'bg-[#006bd1] border-[#006bd1] text-white shadow-2xs' 
+                        : 'bg-slate-50 border-gray-200 text-slate-600 hover:bg-slate-100 hover:text-slate-800'
+                    }`}
+                  >
+                    {job.jobName}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 선택 직무 세부 분석 현황판 */}
+          {(() => {
+            const matchedJob = jobProfiles.find(j => j.jobName === selectedJob) || jobProfiles[0];
+            const matchingCount = matchedJob.recommendedCourses.filter(code => completedCourseCodes.includes(code)).length;
+            const progressPercent = ((matchingCount / matchedJob.recommendedCourses.length) * 100).toFixed(0);
+
+            return (
+              <div className="border border-slate-100/80 rounded-2xl bg-slate-50/50 p-4 space-y-4">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-gray-100 pb-3">
+                  <div className="space-y-0.5">
+                    <span className="text-[9px] font-black tracking-widest text-[#006bd1] block uppercase">MATCHED CAREER DETAILS</span>
+                    <h4 className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                      <span>{matchedJob.jobName}</span>
+                      <span className="text-xs text-slate-500 font-bold">인기도 ★★★★★</span>
+                    </h4>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-black text-slate-500 bg-white border border-slate-200 px-2 py-1 rounded-md">
+                      직무 매칭 이수율: <strong className="text-[#006bd1] font-mono">{progressPercent}%</strong> ({matchingCount}/{matchedJob.recommendedCourses.length} 과목 완료)
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-600 font-semibold leading-relaxed">
+                  📘 {matchedJob.description}
+                </p>
+
+                {/* dynamic milestones */}
+                <div className="space-y-2.5 pt-1">
+                  <span className="text-[10.5px] font-black text-gray-400 uppercase tracking-wider block">직무 달성을 위한 단계별 추천 커리큘럼</span>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {matchedJob.milestones.map((milestone, mIdx) => (
+                      <div key={mIdx} className="bg-white border border-gray-100 p-3 rounded-xl flex flex-col justify-between space-y-2 relative">
+                        <div className="space-y-1">
+                          <span className="text-[9px] font-black text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded">
+                            {milestone.step}
+                          </span>
+                          <p className="text-[11px] text-slate-700 font-bold leading-normal pt-1 select-all">
+                            {milestone.tasks}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 해당 직무 맞춤 매칭 코스 과목 리스트 */}
+                <div className="space-y-2.5">
+                  <span className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest block">권장 교과목 매칭 현황 및 수강신청 가이드</span>
+                  <div className="flex flex-wrap gap-2">
+                    {matchedJob.recommendedCourses.map((code) => {
+                      const course = getCourseObj(code);
+                      const isCompleted = completedCourseCodes.includes(code);
+
+                      return (
+                        <div 
+                          key={code}
+                          className={`flex items-center gap-2 px-3 py-2 rounded-xl text-[11px] font-semibold border ${
+                            isCompleted 
+                              ? 'bg-emerald-50/60 border-emerald-100 text-emerald-800' 
+                              : 'bg-blue-50/50 border-blue-100 text-blue-900'
+                          }`}
+                        >
+                          <span className="font-extrabold">{course.name}</span>
+                          <span className="font-mono text-[9px] text-gray-400/80">({code})</span>
+                          {isCompleted ? (
+                            <span className="bg-emerald-500 text-white text-[9px] font-black tracking-tighter px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                              ✓ 이수됨
+                            </span>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                setCompletedCourseCodes(prev => [...prev, code]);
+                                onShowToast(`[${course.name}] 과목을 완료 상태로 전환 연동했습니다!`);
+                              }}
+                              className="bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-black tracking-tighter px-1.5 py-0.5 rounded-md transition cursor-pointer"
+                            >
+                              수강등록 ＋
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+      </div>
+
       {/* 4. [인터랙티브 개선점] 5대 전공 커리어 코스 로드맵 */}
       <div className="space-y-6" id="career-tracks-roadmap">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-3 select-none">
@@ -1361,6 +1712,145 @@ export default function CurriculumViewer({ onShowToast, loggedInUser = null, isL
                 조회완료 닫기
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Mascot Chatbot Button (아이콘으로 따라다니는 스트로) */}
+      <div className="fixed bottom-24 right-5 sm:right-8 z-40 flex flex-col items-end gap-2">
+        {!isFloatingChatOpen && (
+          <div className="bg-slate-900 border border-gray-700 text-white text-[10px] sm:text-xs font-black px-3.5 py-2 rounded-2xl shadow-2xl animate-bounce mb-1">
+            💬 변석영님, 맞춤 교육과정 상담봇 스트로를 만나보세요!
+          </div>
+        )}
+        <button
+          onClick={() => {
+            setIsFloatingChatOpen(!isFloatingChatOpen);
+            onShowToast(isFloatingChatOpen ? '원격 인바디 상담봇 스트로를 닫았습니다.' : '원격 인바디 상담봇 스트로가 활성화되었습니다.');
+          }}
+          className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#006bd1] to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95 cursor-pointer relative group border-2 border-white"
+        >
+          <div className="absolute -top-1 -right-1 bg-emerald-400 w-3.5 h-3.5 rounded-full border-2 border-white animate-pulse" />
+          <Brain className="w-7 h-7 text-white" />
+        </button>
+      </div>
+
+      {/* Floating Chat Drawer (Sliding from right or popover) */}
+      {isFloatingChatOpen && (
+        <div className="fixed bottom-24 right-5 sm:right-8 z-50 w-96 max-w-[calc(100vw-40px)] bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-2xl flex flex-col h-[520px] animate-slideUp">
+          {/* Chat Header */}
+          <div className="bg-[#1b3b6f] text-white px-5 py-4 flex items-center justify-between border-b border-gray-700">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <div className="flex flex-col">
+                <span className="text-xs font-black tracking-tight flex items-center gap-1">
+                  <span>상담원 스트로</span>
+                  <span className="text-[10px] text-white/70 bg-white/10 px-1 py-0.2 rounded font-normal">챗봇</span>
+                </span>
+                <span className="text-[10px] text-emerald-300 font-bold -mt-0.5">변석영님 전담 챗봇 온라인</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsFloatingChatOpen(false)}
+              className="text-white/70 hover:text-white p-1 hover:bg-white/10 rounded-lg text-sm transition"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* User target info summary */}
+          <div className="bg-slate-50 border-b border-gray-100 px-4 py-2.5 flex items-center justify-between text-[11px] font-bold text-slate-500">
+            <span>👤 변석영 (소프트웨어학부 2학년)</span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md text-slate-800">희망직무: {selectedJob}</span>
+          </div>
+
+          {/* Chat Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+            {chatMessages.map((msg, idx) => {
+              const isBot = msg.sender === 'bot';
+              return (
+                <div key={idx} className={`flex gap-2 ${isBot ? 'justify-start' : 'justify-end'}`}>
+                  {isBot && (
+                    <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm text-xs select-none">
+                      🤖
+                    </div>
+                  )}
+                  <div className={`max-w-[85%] rounded-2xl p-3 text-xs font-semibold leading-relaxed shadow-3xs ${
+                    isBot 
+                      ? 'bg-white text-slate-700 border border-slate-100' 
+                      : 'bg-[#006bd1] text-white shadow-2xs'
+                  }`}>
+                    {msg.text}
+                  </div>
+                </div>
+              );
+            })}
+            
+            {isTyping && (
+              <div className="flex gap-2 justify-start">
+                <div className="w-7 h-7 rounded-full bg-indigo-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm text-xs">
+                  🤖
+                </div>
+                <div className="bg-white text-gray-400 border border-slate-100 rounded-2xl px-4 py-3 text-xs flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.2s]" />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce [animation-delay:0.4s]" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Sugguestion Chips */}
+          <div className="px-3 py-2 bg-slate-100 border-t border-gray-100 flex gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none">
+            {[
+              { text: `소프트웨어학부에 어울리는 미디어 과목 추천해줘`, label: '💻 소프트웨어 융합 추천' },
+              { text: `내 희망 직무 [${selectedJob}] 양성 가이드는?`, label: '🎯 희망직무 권장코스' },
+              { text: `현재까지 취득한 학점과 잔여과목 조회해줘`, label: '📊 학점 이수현황 분석' },
+              { text: '대여장비 FX9 카메라 활용 실습과목 추천해줘', label: '🎥 촬영장비 특화과목' }
+            ].map((chip, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  handleSendChatMessage(chip.text);
+                  onShowToast(`"${chip.text}" 간편 질문을 접수했습니다.`);
+                }}
+                className="text-[10px] font-black text-slate-700 bg-white hover:bg-[#006bd1] hover:text-white border border-gray-200 px-3 py-1.5 rounded-full transition cursor-pointer shrink-0"
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Input Box */}
+          <div className="p-3 bg-white border-t border-gray-100 flex gap-2">
+            <input
+              type="text"
+              placeholder="상담하실 내용을 입력해 주세요..."
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && chatInput.trim()) {
+                  handleSendChatMessage(chatInput);
+                  setChatInput('');
+                  onShowToast('간편상답 전용 답변을 생성 중입니다.');
+                }
+              }}
+              disabled={isTyping}
+              className="flex-1 text-xs font-bold px-3 py-2.5 bg-slate-50 hover:bg-slate-100/50 focus:bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-[#006bd1] transition disabled:opacity-50"
+            />
+            <button
+              onClick={() => {
+                if (chatInput.trim()) {
+                  handleSendChatMessage(chatInput);
+                  setChatInput('');
+                  onShowToast('간편상답 전용 답변을 생성 중입니다.');
+                }
+              }}
+              disabled={!chatInput.trim() || isTyping}
+              className="bg-[#006bd1] hover:bg-blue-700 text-white px-3.5 py-2 rounded-xl transition cursor-pointer flex items-center justify-center shrink-0"
+            >
+              <Send className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       )}
