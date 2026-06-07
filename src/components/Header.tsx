@@ -219,13 +219,7 @@ export default function Header({
         </div>
       </div>
 
-      {/* Toast Alert Box */}
-      {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#0d1522]/95 border border-[#006bd1]/60 text-white font-medium text-xs sm:text-sm px-6 py-3 rounded-full shadow-2xl z-50 flex items-center gap-2.5 animate-bounce backdrop-blur">
-          <div className="w-2 h-2 rounded-full bg-[#00b0ff] animate-pulse" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+
     </header>
   );
 }

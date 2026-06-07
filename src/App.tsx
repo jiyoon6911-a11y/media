@@ -233,62 +233,64 @@ export default function App() {
         <HeroSection />
 
         {/* 3대 핵심 네비게이션 탭 시스템 (대여 가능 장비보기 / 대여 신청하기 / 대여 현황보기) */}
-        <div className="w-full bg-white border-b border-gray-200 sticky top-0 z-30 shadow-xs">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 gap-4">
-              
-              {/* 이미지 1 예시처럼 "보유기기(전체)" 서식을 본떠만든 현재 상태 바 */}
-              <div className="space-y-1 select-none">
-                <div className="flex items-center gap-1.5 text-[11px] text-gray-400 font-extrabold tracking-wide uppercase">
-                  <span>통합 기자재 대여 포털</span>
-                  <span>&gt;</span>
-                  <span className="text-[#006bd1]">{activeSubcategory}</span>
+        {activeMenu === '기기예약' && (
+          <div className="w-full bg-white border-b border-gray-200 sticky top-0 z-30 shadow-xs">
+            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 gap-4">
+                
+                {/* 이미지 1 예시처럼 "보유기기(전체)" 서식을 본떠만든 현재 상태 바 */}
+                <div className="space-y-1 select-none">
+                  <div className="flex items-center gap-1.5 text-[11px] text-gray-400 font-extrabold tracking-wide uppercase">
+                    <span>통합 기자재 대여 포털</span>
+                    <span>&gt;</span>
+                    <span className="text-[#006bd1]">{activeSubcategory}</span>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                    {activeSubcategory === '대여 가능 장비보기' && '보유기기(전체) 현황조회'}
+                    {activeSubcategory === '대여 신청하기' && '온라인 장비대여 신청서 작성'}
+                    {activeSubcategory === '대여 현황보기' && '실시간 기기예약 및 대여현황'}
+                  </h2>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                  {activeSubcategory === '대여 가능 장비보기' && '보유기기(전체) 현황조회'}
-                  {activeSubcategory === '대여 신청하기' && '온라인 장비대여 신청서 작성'}
-                  {activeSubcategory === '대여 현황보기' && '실시간 기기예약 및 대여현황'}
-                </h2>
-              </div>
 
-              {/* 아주 직관적인 3대 대형 핵심 탭 컨트롤러 */}
-              <div className="flex items-center bg-slate-100 p-1 rounded-xl w-full sm:w-auto overflow-x-auto gap-0.5 select-none">
-                {[
-                  { id: '대여 가능 장비보기', title: '대여 가능 장비보기', icon: Layers },
-                  { id: '대여 신청하기', title: '대여 신청하기', icon: ClipboardEdit },
-                  { id: '대여 현황보기', title: '대여 현황보기', icon: CalendarRange }
-                ].map((tab) => {
-                  const isActive = activeSubcategory === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => {
-                        if (tab.id !== '대여 가능 장비보기' && !isLoggedIn) {
-                          setTargetTabAfterLogin(tab.id);
-                          setShowLoginModal(true);
-                          showToast('경고: 해당 탭 서비스는 로그인이 필요하여 통합 로그인 화면으로 연계합니다.');
-                          return;
-                        }
-                        setActiveSubcategory(tab.id);
-                        showToast(`"${tab.title}" 업무 화면으로 스위치 전환되었습니다.`);
-                      }}
-                      className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs sm:text-xs font-black px-4 py-2.5 rounded-lg whitespace-nowrap transition duration-200 cursor-pointer ${
-                        isActive
-                          ? 'bg-white text-[#1b3b6f] shadow-sm'
-                          : 'text-gray-500 hover:text-slate-900 hover:bg-slate-50'
-                      }`}
-                      id={`core-tab-${tab.id}`}
-                    >
-                      <tab.icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#006bd1]' : 'text-gray-400'}`} />
-                      <span>{tab.title}</span>
-                    </button>
-                  );
-                })}
-              </div>
+                {/* 아주 직관적인 3대 대형 핵심 탭 컨트롤러 */}
+                <div className="flex items-center bg-slate-100 p-1 rounded-xl w-full sm:w-auto overflow-x-auto gap-0.5 select-none">
+                  {[
+                    { id: '대여 가능 장비보기', title: '대여 가능 장비보기', icon: Layers },
+                    { id: '대여 신청하기', title: '대여 신청하기', icon: ClipboardEdit },
+                    { id: '대여 현황보기', title: '대여 현황보기', icon: CalendarRange }
+                  ].map((tab) => {
+                    const isActive = activeSubcategory === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => {
+                          if (tab.id !== '대여 가능 장비보기' && !isLoggedIn) {
+                            setTargetTabAfterLogin(tab.id);
+                            setShowLoginModal(true);
+                            showToast('경고: 해당 탭 서비스는 로그인이 필요하여 통합 로그인 화면으로 연계합니다.');
+                            return;
+                          }
+                          setActiveSubcategory(tab.id);
+                          showToast(`"${tab.title}" 업무 화면으로 스위치 전환되었습니다.`);
+                        }}
+                        className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs sm:text-xs font-black px-4 py-2.5 rounded-lg whitespace-nowrap transition duration-200 cursor-pointer ${
+                          isActive
+                            ? 'bg-white text-[#1b3b6f] shadow-sm'
+                            : 'text-gray-500 hover:text-slate-900 hover:bg-slate-50'
+                        }`}
+                        id={`core-tab-${tab.id}`}
+                      >
+                        <tab.icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#006bd1]' : 'text-gray-400'}`} />
+                        <span>{tab.title}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 메인 라우터 영역 구조 */}
         <main className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -404,13 +406,7 @@ export default function App() {
         </button>
       )}
 
-      {/* Global Toast Alert Box */}
-      {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-900/95 border border-[#006bd1]/40 text-white font-medium text-xs sm:text-sm px-6 py-3 rounded-full shadow-2xl z-50 flex items-center gap-2.5 animate-bounce backdrop-blur">
-          <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-          <span>{toastMessage}</span>
-        </div>
-      )}
+
 
       {/* 한림대학교 통합 로그인 전면 오버레이 (데모 테스트용 취소 Close 지원) */}
       {showLoginModal && (
